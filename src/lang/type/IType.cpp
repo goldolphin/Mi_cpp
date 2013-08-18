@@ -1,11 +1,11 @@
 /*
- * AbstractType.cpp
+ * IType.cpp
  *
- *  Created on: 2013年8月10日
+ *  Created on: 2013年8月17日
  *      Author: goldolphin
  */
 
-#include "AbstractType.h"
+#include "IType.h"
 
 namespace mi {
 namespace lang {

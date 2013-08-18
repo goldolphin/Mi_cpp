@@ -9,11 +9,16 @@
 #define COMMON_H_
 
 #include <string>
+#include <cassert>
 
 namespace mi {
 
 typedef std::string mstring;
 typedef char mchar;
+
+typedef unsigned char byte;
+
+#define massert std::assert
 
 class Common {
 };

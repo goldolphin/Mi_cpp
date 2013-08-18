@@ -8,19 +8,19 @@
 #ifndef PRIMATIVETYPE_H_
 #define PRIMATIVETYPE_H_
 
-#include "AbstractType.h"
+#include "IType.h"
 
 namespace mi {
 namespace lang {
 
-class PrimativeType: public AbstractType {
+class PrimativeType: public IType {
 public:
 	virtual const mstring & getName() const {
 		return _name;
 	}
 
-	virtual bool equals(const AbstractType& o) const {
-		if (getCategory() != o.getCategory()) {
+	virtual bool equals(const IType& o) const {
+		if (typeid(o) != typeid(PrimativeType)) {
 			return false;
 		}
 		auto that = static_cast<const PrimativeType&>(o);
