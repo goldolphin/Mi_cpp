@@ -27,7 +27,7 @@ public:
 
 	virtual int getSize() const = 0;
 
-	virtual byte* getData() = 0;
+	virtual byte* getData() const = 0;
 
 	template<typename T>
 	T& cast() const {
