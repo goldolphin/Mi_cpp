@@ -8,6 +8,9 @@
 #ifndef IVARIABLE_H_
 #define IVARIABLE_H_
 
+#include "memory/IValue.h"
+#include "type/IType.h"
+
 namespace mi {
 namespace lang {
 

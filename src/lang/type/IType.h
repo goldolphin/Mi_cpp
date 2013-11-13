@@ -7,6 +7,8 @@
 
 #ifndef ITYPE_H_
 #define ITYPE_H_
+#include "../../common/Common.h"
+#include "../memory/IValue.h"
 
 namespace mi {
 namespace lang {

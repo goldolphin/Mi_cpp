@@ -8,6 +8,7 @@
 #ifndef PRIMATIVETYPE_H_
 #define PRIMATIVETYPE_H_
 
+#include <typeinfo>
 #include "IType.h"
 
 namespace mi {

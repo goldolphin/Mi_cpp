@@ -9,10 +9,11 @@
 #define IVALUE_H_
 
 #include "../../common/Common.h"
-#include "../../type/IType.h"
 
 namespace mi {
 namespace lang {
+
+class IType;
 
 class IValue {
 public:
@@ -26,7 +27,6 @@ public:
 
 	template<typename T>
 	T& cast() const {
-		massert(sizeof(T) == getSize());
 		return *reinterpret_cast<T*>(getBytes());
 	}
 

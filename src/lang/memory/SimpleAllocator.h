@@ -26,7 +26,6 @@ public:
 
 	template<typename T>
 	T& cast() const {
-		massert(sizeof(T) == getSize());
 		return reinterpret_cast<T&>(*_bytes.data());
 	}
 
