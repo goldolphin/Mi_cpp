@@ -106,10 +106,6 @@ public:
 
 class Function : public IFunction {
 public:
-	Function(int paramNum)
-		: paramNum(paramNum), body(NULL) {
-	}
-
 	void setBody(IExpr& body) {
 		this->body = &body;
 	}
@@ -125,36 +121,34 @@ public:
 	}
 
 private:
-	int paramNum;
 	IExpr* body;
 };
-/*
+
 class FuncApply : public IExpr {
 public:
 	FuncApply(IFunction& function, IExpr& param1)
 		: function(function) {
-		params.push_back(param1);
+		params.push_back(&param1);
 	}
 
 	FuncApply(IFunction& function, IExpr& param1, IExpr& param2)
 		: function(function) {
-		params.push_back(param1);
-		params.push_back(param2);
+		params.push_back(&param1);
+		params.push_back(&param2);
 	}
 
 	virtual int evaluate(Environment& env) {
 		vector<int> evaluated;
 		for (auto p = params.begin(); p != params.end(); p ++) {
-			evaluated.push_back((*p).evaluate(env));
+			evaluated.push_back((*p)->evaluate(env));
 		}
 		return function.apply(env, evaluated);
 	}
 
 private:
 	IFunction& function;
-	vector<IExpr> params;
+	vector<IExpr*> params;
 };
-
 
 class LessEqual : public IFunction {
 public:
@@ -176,7 +170,6 @@ public:
 		return params[0] - params[1];
 	}
 };
-*/
 
 int fib(int n) {
 	if (n <= 1) {
@@ -185,12 +178,11 @@ int fib(int n) {
 	return fib(n-1) + fib(n-2);
 }
 
-/*
 int fib2(int n) {
 	LessEqual le;
 	Add add;
 	Minus minus;
-	Function fib(1);
+	Function fib;
 	Variable N(0, 0);
 	Number One(1);
 	Number Two(2);
@@ -198,17 +190,27 @@ int fib2(int n) {
 	FuncApply le1(le, N, One);
 	FuncApply minus1(minus, N, One);
 	FuncApply minus2(minus, N, Two);
-	FuncApply alternative(add, minus1, minus2);
+
+	FuncApply fib1(fib, minus1);
+	FuncApply fib2(fib, minus2);
+
+	FuncApply alternative(add, fib1, fib2);
 	If body(le1, One, alternative);
 	fib.setBody(body);
 	Environment env;
-	return (new FuncApply(fib, *(new Number(n))))->evaluate(env);
+	Number Num(n);
+	return (new FuncApply(fib, Num))->evaluate(env);
 }
-*/
+
 int main() {
-	for (int i = 0; i < 5; i ++) {
-		cout << fib(i) << endl;
+	for (int i = 0; i < 10; i ++) {
+		cout << fib(i) << " ";
 	}
 
+	cout<<endl;
+
+	for (int i = 0; i < 10; i ++) {
+		cout << fib2(i) << " ";
+	}
 	return 0;
 }

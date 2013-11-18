@@ -1,0 +1,8 @@
+let fib = fun(n:Int) -> if(n <= 1, 1, fib(n-1)+fib(n-2));
+
+fib(10);
+
+/*
+Function
+    params: []
+*/
